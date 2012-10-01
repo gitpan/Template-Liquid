@@ -1,14 +1,8 @@
 package Template::Liquid::Document;
 { $Template::Liquid::Document::VERSION = 'v1.0.0' }
-use strict;
-use warnings;
-use lib '../';
-use Template::Liquid::Variable;
-use Template::Liquid::Utility;
+require Template::Liquid::Variable;
+require Template::Liquid::Utility;
 #
-sub resolve { $_[0]->template->context->resolve($_[1], $_[2]); }
-sub template { $_[0]->{'template'} }
-sub parent   { $_[0]->{'parent'} }
 
 sub new {
     my ($class, $args) = @_;
@@ -28,18 +22,18 @@ sub parse {
     (scalar @_ == 3 ? ($class, $args, $tokens) : ($class, $tokens)) = @_;
     my $s = ref $class ? $class : $class->new($args);
 NODE: while (my $token = shift @{$tokens}) {
-        if ($token =~ qr[^${Template::Liquid::Utility::TagStart}  # {%
-                                (.+?)                         # etc
-                              ${Template::Liquid::Utility::TagEnd}    # %}
-                             $]x
+        if ($token =~ qr[^${Template::Liquid::Utility::TagStart}   # {%
+                                (.+?)                              # etc
+                              ${Template::Liquid::Utility::TagEnd} # %}
+                             $]ox
             )
         {   my ($tag, $attrs) = (split ' ', $1, 2);
-            my ($package, $call) = $s->template->tags->{$tag};
+            my ($package, $call) = $s->{template}{tags}{$tag};
             if ($package
-                && ($call = $s->template->tags->{$tag}->can('new')))
+                && ($call = $s->{template}{tags}{$tag}->can('new')))
             {   my $_tag =
                     $call->($package,
-                            {template => $s->template,
+                            {template => $s->{template},
                              parent   => $s,
                              tag_name => $tag,
                              markup   => $token,
@@ -52,7 +46,7 @@ NODE: while (my $token = shift @{$tokens}) {
                         Template::Liquid::Block->new(
                                               {tag_name => $tag,
                                                attrs    => $attrs,
-                                               template => $_tag->template,
+                                               template => $_tag->{template},
                                                parent   => $_tag
                                               }
                         );
@@ -76,7 +70,7 @@ NODE: while (my $token = shift @{$tokens}) {
             {   $s->push_block({tag_name => $tag,
                                 attrs    => $attrs,
                                 markup   => $token,
-                                template => $s->template,
+                                template => $s->{template},
                                 parent   => $s
                                },
                                $tokens
@@ -91,9 +85,9 @@ NODE: while (my $token = shift @{$tokens}) {
                     ${Template::Liquid::Utility::VariableStart} # {{
                         (.+?)                           #  stuff + filters?
                     ${Template::Liquid::Utility::VariableEnd}   # }}
-                $]x
+                $]ox
             )
-        {   my ($variable, $filters) = split qr[\s*\|\s*], $1, 2;
+        {   my ($variable, $filters) = split qr[\s*\|\s*]o, $1, 2;
             my @filters;
             for my $filter (split $Template::Liquid::Utility::FilterSeparator,
                             $filters || '')
@@ -101,8 +95,8 @@ NODE: while (my $token = shift @{$tokens}) {
                     = split
                     $Template::Liquid::Utility::FilterArgumentSeparator,
                     $filter, 2;
-                $filter =~ s[\s*$][];    # XXX - the splitter should clean...
-                $filter =~ s[^\s*][];    # XXX -  ...this up for us.
+                $filter =~ s[\s*$][]o;    # XXX - the splitter should clean...
+                $filter =~ s[^\s*][]o;    # XXX -  ...this up for us.
                 my @args
                     = $args ?
                     split
@@ -112,7 +106,7 @@ NODE: while (my $token = shift @{$tokens}) {
                 push @filters, [$filter, \@args];
             }
             push @{$s->{'nodelist'}},
-                Template::Liquid::Variable->new({template => $s->template,
+                Template::Liquid::Variable->new({template => $s->{template},
                                                  parent   => $s,
                                                  markup   => $token,
                                                  variable => $variable,

@@ -41,7 +41,7 @@ provides:
     version: v1.0.0
   Template::Liquid:
     file: lib/Template/Liquid.pm
-    version: v0.9.0_1
+    version: v0.9.0_2
   Template::Liquid::ArgumentError:
     file: lib/Template/Liquid/Error.pm
     version: 0
@@ -134,4 +134,4 @@ resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/sanko/template-liquid.git
   x_ChangeLog: http://github.com/sanko/template-liquid/commits/
-version: v0.9.0_1
+version: v0.9.0_2

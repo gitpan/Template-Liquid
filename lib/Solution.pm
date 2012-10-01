@@ -13,7 +13,7 @@ our @ISA = qw[Solution];
 
 =head1 NAME
 
-Solution - A Simple, Stateless Template System
+Solution - A Simple, Stateless Template System (Thin wrapper around Template::Liquid)
 
 =head1 Description
 

@@ -1,12 +1,9 @@
 package Template::Liquid::Tag::Assign;
 { $Template::Liquid::Tag::Assign::VERSION = 'v1.0.0' }
-use strict;
-use warnings;
-use lib '../../../lib';
-use Template::Liquid::Error;
-use Template::Liquid::Utility;
+require Template::Liquid::Error;
+require Template::Liquid::Utility;
 BEGIN { our @ISA = qw[Template::Liquid::Tag]; }
-sub import {Template::Liquid::register_tag('assign', __PACKAGE__) }
+sub import {Template::Liquid::register_tag('assign') }
 sub new {
     my ($class, $args) = @_;
     raise Template::Liquid::ContextError {
@@ -25,7 +22,7 @@ sub new {
         }
         if !defined $args->{'attrs'};
     ($args->{'variable'}, $args->{'value'}, my $filters)
-        = split m[\s*[=\|]\s+?],
+        = split m[\s*[=\|]\s+?]o,
         $args->{'attrs'}, 3;
     $args->{'name'}    = 'a-' . $args->{'attrs'};
     $args->{'filters'} = [];
@@ -35,8 +32,8 @@ sub new {
             my ($filter, $f_args)
                 = split $Template::Liquid::Utility::FilterArgumentSeparator,
                 $filter, 2;
-            $filter =~ s[\s*$][];    # XXX - the splitter should clean...
-            $filter =~ s[^\s*][];    # XXX -  ...this up for us.
+            $filter =~ s[\s*$][]o;    # XXX - the splitter should clean...
+            $filter =~ s[^\s*][]o;    # XXX -  ...this up for us.
             my @f_args
                 = $f_args ?
                 split $Template::Liquid::Utility::VariableFilterArgumentParser,
@@ -51,12 +48,12 @@ sub new {
 sub render {
     my $s   = shift;
     my $var = $s->{'variable'};
-    my $val = $s->resolve($s->{'value'});
+    my $val = $s->{template}{context}->resolve($s->{'value'});
     {    # XXX - Duplicated in Template::Liquid::Variable::render
     FILTER: for my $filter (@{$s->{'filters'}}) {
             my ($name, $args) = @$filter;
-            map { $_ = m[^(['"])(.+)\1\s*$] ? $2 : $s->resolve($_) } @$args;
-        PACKAGE: for my $package (@{$s->template->filters}) {
+            map { $_ = m[^(['"])(.+)\1\s*$] ? $2 : $s->{template}{context}->resolve($_) } @$args;
+        PACKAGE: for my $package (@{$s->{template}{filters}}) {
                 if (my $call = $package->can($name)) {
                     $val = $call->($val, @$args);
                     next FILTER;
@@ -67,7 +64,7 @@ sub render {
             }
         }
     }
-    $s->resolve($var, $val);
+    $s->{template}{context}->resolve($var, $val);
     return '';
 }
 1;

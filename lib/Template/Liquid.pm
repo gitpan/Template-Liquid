@@ -1,7 +1,5 @@
 package Template::Liquid;
-{ $Template::Liquid::VERSION = 'v0.9.0_01' }
-use strict;
-use warnings;
+{ $Template::Liquid::VERSION = 'v0.9.0_02' }
 our (%tags, @filters);
 #
 use Template::Liquid::Document;
@@ -15,8 +13,7 @@ sub register_tag {
         if ref $_[0];
     $tags{$_[0]} = scalar caller;
 }
-sub tags { shift->{tags} }
-use Template::Liquid::Tag::Assign;
+ use Template::Liquid::Tag::Assign;
 use Template::Liquid::Tag::Break;
 use Template::Liquid::Tag::Capture;
 use Template::Liquid::Tag::Case;
@@ -32,14 +29,9 @@ sub register_filter {
     push @{$_->[0]->{filters}}, $_[1] ? $_[1] : scalar caller if ref $_[0];
     push @filters, $_[0] ? $_[0] : scalar caller;
 }
-sub filters { shift->{filters} }
-use Template::Liquid::Filter::Standard;
+ use Template::Liquid::Filter::Standard;
 #
-sub context  { $_[0]->{'context'} }
-sub document { $_[0]->{'document'} }
-sub parent   { $_[0]->{'parent'} }
-sub resolve  { $_[0]->{'context'}->resolve($_[1], $_[2]) }
-#
+
 sub new {
     my ($class) = @_;
     my $s = bless {break    => 0,
@@ -64,7 +56,7 @@ sub render {
     $info ||= {};
     $info->{'template'} = $s;
     $s->{'context'} = Template::Liquid::Context->new($assigns, $info);
-    return $s->document->render();
+    return $s->{document}->render();
 }
 1;
 
@@ -132,8 +124,8 @@ L<Liquid for Designers|http://wiki.github.com/tobi/liquid/liquid-for-designers>.
 
 =head1 Extending Template::Liquid
 
-Extending the Template::Liquid template engine for your needs is almost too simple.
-Keep reading.
+Extending the Template::Liquid template engine for your needs is almost too
+simple. Keep reading.
 
 =head2 Custom Filters
 
@@ -153,11 +145,6 @@ filters.
     # Or simply say...
     Template::Liquid->register_filter( );
     # ...and Template::Liquid will assume the filters are in the calling package
-
-=head3 C<< Template::Liquid->filters( ) >>
-
-Returns a list containing all the tags currently loaded for informational
-purposes.
 
 =head2 Custom Tags
 
@@ -184,11 +171,6 @@ Pre-existing tags are replaced when new tags are registered with the same
 name. You may want to do this to override some functionality.
 
 For an example of a custom tag, see L<Template::Solution::Tag::Include>.
-
-=head3 C<< Template::Liquid->tags( ) >>
-
-Returns a hashref containing all the tags currently loaded for informational
-purposes.
 
 =head1 Why should I use Template::Liquid?
 
