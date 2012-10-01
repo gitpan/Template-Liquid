@@ -1,0 +1,196 @@
+{
+   "abstract" : "A Simple, Stateless Template System",
+   "author" : [
+      "Sanko Robinson <sanko@cpan.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "keywords" : [
+      "Liquid",
+      "template",
+      "engine",
+      "Solution",
+      "stateless"
+   ],
+   "license" : [
+      "artistic_2"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Template-Liquid",
+   "no_index" : {
+      "directory" : [
+         "examples",
+         "inc",
+         "t"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "CPAN::Meta::Converter" : "0",
+            "CPAN::Meta::Validator" : "0",
+            "File::Find" : "0",
+            "File::Spec" : "0",
+            "JSON" : "0",
+            "Module::Build" : "0.4",
+            "Perl::Tidy" : "0",
+            "Test::More" : "0.94",
+            "perl" : "5.006001"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.4"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "File::Spec" : "0",
+            "perl" : "5.006001"
+         }
+      }
+   },
+   "provides" : {
+      "Solution" : {
+         "file" : "lib/Solution.pm",
+         "version" : "v1.0.0"
+      },
+      "Solution::Template" : {
+         "file" : "lib/Solution.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid" : {
+         "file" : "lib/Template/Liquid.pm",
+         "version" : "v0.9.0_1"
+      },
+      "Template::Liquid::ArgumentError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::Block" : {
+         "file" : "lib/Template/Liquid/Block.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Condition" : {
+         "file" : "lib/Template/Liquid/Condition.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Context" : {
+         "file" : "lib/Template/Liquid/Context.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::ContextError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::Document" : {
+         "file" : "lib/Template/Liquid/Document.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Error" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::FileSystemError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::Filter::Standard" : {
+         "file" : "lib/Template/Liquid/Filter/Standard.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::FilterNotFound" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::StackLevelError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::StandardError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::SyntaxError" : {
+         "file" : "lib/Template/Liquid/Error.pm",
+         "version" : 0
+      },
+      "Template::Liquid::Tag" : {
+         "file" : "lib/Template/Liquid/Tag.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Assign" : {
+         "file" : "lib/Template/Liquid/Tag/Assign.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Break" : {
+         "file" : "lib/Template/Liquid/Tag/Break.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Capture" : {
+         "file" : "lib/Template/Liquid/Tag/Capture.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Case" : {
+         "file" : "lib/Template/Liquid/Tag/Case.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Comment" : {
+         "file" : "lib/Template/Liquid/Tag/Comment.pm",
+         "version" : 0
+      },
+      "Template::Liquid::Tag::Continue" : {
+         "file" : "lib/Template/Liquid/Tag/Continue.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Cycle" : {
+         "file" : "lib/Template/Liquid/Tag/Cycle.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::For" : {
+         "file" : "lib/Template/Liquid/Tag/For.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::If" : {
+         "file" : "lib/Template/Liquid/Tag/If.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Raw" : {
+         "file" : "lib/Template/Liquid/Tag/Raw.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Tag::Unless" : {
+         "file" : "lib/Template/Liquid/Tag/Unless.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Utility" : {
+         "file" : "lib/Template/Liquid/Utility.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Liquid::Variable" : {
+         "file" : "lib/Template/Liquid/Variable.pm",
+         "version" : "v1.0.0"
+      },
+      "Template::Solution::Tag::Include" : {
+         "file" : "lib/Template/Solution/Tag/Include.pm",
+         "version" : "v1.0.0"
+      }
+   },
+   "release_status" : "testing",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://github.com/sanko/template-liquid/issues"
+      },
+      "license" : [
+         "http://opensource.org/licenses/artistic-license-2.0.php"
+      ],
+      "repository" : {
+         "url" : "git://github.com/sanko/template-liquid.git"
+      },
+      "x_ChangeLog" : "http://github.com/sanko/template-liquid/commits/"
+   },
+   "version" : "v0.9.0_1"
+}
