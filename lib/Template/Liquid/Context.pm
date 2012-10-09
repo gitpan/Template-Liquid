@@ -2,39 +2,38 @@ package Template::Liquid::Context;
 { $Template::Liquid::Context::VERSION = 'v1.0.0' }
 require Template::Liquid::Utility;
 require Template::Liquid::Error;
-sub scopes    { return $_[0]->{'scopes'} }
-sub scope     { return $_[0]->{'scopes'}->[-1] }
-sub filters   { return $_[0]->{'filters'} }
-sub registers { return $_[0]->{'registers'} }
 
 sub new {
-    my ($class, $assigns, $args) = @_;
-    return bless {
-        filters   => ($args->{'filters'}   ? $args->{'filters'}   : []),
-        registers => ($args->{'registers'} ? $args->{'registers'} : {}),
-        scopes    => [$assigns             ? $assigns             : {}],
-        template => $args->{'template'},    # Required
-        errors   => []
+    my ($class, $template, %assigns) = @_;
+    return bless {scopes   => [\%assigns],
+                  template => $template,     # Required
+                  errors   => []
     }, $class;
 }
 
 sub push {
     my ($s, $context) = @_;
-    return raise Template::Liquid::ContextError 'Cannot push new scope!'
+    return
+        raise Template::Liquid::Error {type    => 'Stack',
+                                       message => 'Cannot push new scope!'
+        }
         if scalar @{$s->{'scopes'}} == 100;
     return push @{$s->{'scopes'}}, (defined $context ? $context : {});
 }
 
 sub pop {
     my ($s) = @_;
-    return raise Template::Liquid::ContextError 'Cannot pop scope!'
+    return
+        raise Template::Liquid::Error {type    => 'Stack',
+                                       message => 'Cannot pop scope!'
+        }
         if scalar @{$s->{'scopes'}} == 1;
     return pop @{$s->{'scopes'}};
 }
 
 sub stack {
     my ($s, $block) = @_;
-    my $old_scope = $s->scope;
+    my $old_scope = $s->{scopes}[-1];
     $s->push();
     $s->merge($old_scope);
     my $result = $block->($s);
@@ -44,7 +43,7 @@ sub stack {
 
 sub merge {
     my ($s, $new) = @_;
-    return $s->{'scopes'}->[0] = __merge(reverse $s->scope, $new);
+    return $s->{'scopes'}->[0] = __merge(reverse $s->{scopes}[-1], $new);
 }
 
 sub _merge {    # Deeply merges data structures
@@ -117,7 +116,7 @@ sub resolve {
     return $s->resolve($1)->[$2] if $path =~ m'^(.+)\[(.+)\]$'o;
     my @path = split $Template::Liquid::Utility::VariableAttributeSeparator,
         $path;
-    my $cursor = \$s->scope;
+    my $cursor = \$s->{scopes}[-1];
 
     while (local $_ = shift @path) {
         my $type = ref $$cursor;

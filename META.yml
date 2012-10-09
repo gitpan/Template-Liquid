@@ -33,18 +33,15 @@ no_index:
     - inc
     - t
 provides:
-  Solution:
-    file: lib/Solution.pm
+  Solution::Tag::Dump:
+    file: lib/Solution/Tag/Dump.pm
     version: v1.0.0
-  Solution::Template:
-    file: lib/Solution.pm
+  Solution::Tag::Include:
+    file: lib/Solution/Tag/Include.pm
     version: v1.0.0
   Template::Liquid:
     file: lib/Template/Liquid.pm
-    version: v0.9.0_2
-  Template::Liquid::ArgumentError:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
+    version: v1.0.0
   Template::Liquid::Block:
     file: lib/Template/Liquid/Block.pm
     version: v1.0.0
@@ -54,32 +51,17 @@ provides:
   Template::Liquid::Context:
     file: lib/Template/Liquid/Context.pm
     version: v1.0.0
-  Template::Liquid::ContextError:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
   Template::Liquid::Document:
     file: lib/Template/Liquid/Document.pm
     version: v1.0.0
   Template::Liquid::Error:
     file: lib/Template/Liquid/Error.pm
     version: v1.0.0
-  Template::Liquid::FileSystemError:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
-  Template::Liquid::Filter::Standard:
-    file: lib/Template/Liquid/Filter/Standard.pm
+  Template::Liquid::Filter:
+    file: lib/Template/Liquid/Filters.pm
     version: v1.0.0
-  Template::Liquid::FilterNotFound:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
-  Template::Liquid::StackLevelError:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
-  Template::Liquid::StandardError:
-    file: lib/Template/Liquid/Error.pm
-    version: 0
-  Template::Liquid::SyntaxError:
-    file: lib/Template/Liquid/Error.pm
+  Template::Liquid::Filters:
+    file: lib/Template/Liquid/Filters.pm
     version: 0
   Template::Liquid::Tag:
     file: lib/Template/Liquid/Tag.pm
@@ -123,9 +105,6 @@ provides:
   Template::Liquid::Variable:
     file: lib/Template/Liquid/Variable.pm
     version: v1.0.0
-  Template::Solution::Tag::Include:
-    file: lib/Template/Solution/Tag/Include.pm
-    version: v1.0.0
 requires:
   File::Spec: 0
   perl: 5.006001
@@ -134,4 +113,4 @@ resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/sanko/template-liquid.git
   x_ChangeLog: http://github.com/sanko/template-liquid/commits/
-version: v0.9.0_2
+version: v1.0.0

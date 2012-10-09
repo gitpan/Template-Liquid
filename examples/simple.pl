@@ -4,18 +4,17 @@ use lib '../lib';
 use lib 'lib';
 use Template::Liquid;
 $|++;
-for (1 .. 1000) {
 my $template = Template::Liquid->parse(<<'END');
 {%for i in array%}
     Test. {{i}}
 {%endfor%}
 END
-$template->render({condition => 1, array => [qw[one two three four]]});
-Template::Liquid->parse(
+warn $template->render({condition => 1, array => [qw[one two three four]]});
+print Template::Liquid->parse(
       <<'INPUT')->render({hash => {key => 'value'}, list => [qw[key value]]});
 {% if hash == list %}Yep.{% endif %}
 INPUT
-Template::Liquid->parse(<<'END')->render();
+warn Template::Liquid->parse(<<'END')->render();
 {% assign grp_one = 'group 1' %}
 
 {% cycle grp_one: 'one', 'two', 'three' %}
@@ -23,4 +22,3 @@ Template::Liquid->parse(<<'END')->render();
 {% cycle 'group 2': 'one', 'two', 'three' %}
 {% cycle 'group 2': 'one', 'two', 'three' %}
 END
-}

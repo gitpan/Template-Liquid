@@ -1,6 +1,14 @@
-package Template::Liquid::Filter::Standard;
-{ $Template::Liquid::Filter::Standard::VERSION = 'v1.0.0' }
-sub import {Template::Liquid::register_filter()}
+package Template::Liquid::Filters;
+{ $Template::Liquid::Filter::VERSION = 'v1.0.0' }
+
+sub import {
+    Template::Liquid::register_filter(
+        qw[ date capitalize upcase downcase first last join split sort size
+            strip_html strip_newlines newline_to_br replace replace_first remove
+            remove_first truncate truncatewords prepend append minus plus times
+            divided_by modulo]
+    );
+}
 
 sub date {
     $_[0] = time() if lc $_[0] eq 'now' || lc $_[0] eq 'today';
@@ -105,7 +113,7 @@ sub divided_by { return $_[0] / $_[1]; }
 
 sub modulo {
     return ((!defined $_[0] && $_[0] =~ m[[^\d\.]]o) ? '' : (!defined $_[1]
-                               && $_[1] =~ m[[^\d\.]]o) ? $_[0] : $_[0] % $_[1]
+                              && $_[1] =~ m[[^\d\.]]o) ? $_[0] : $_[0] % $_[1]
     );
 }
 #
@@ -121,7 +129,7 @@ sub modulo {
 
 =head1 NAME
 
-Template::Liquid::Filter::Standard - Default Filters Based on Liquid's Standard Set
+Template::Liquid::Filters - Default Filters Based on Liquid's Standard Set
 
 =head1 Standard Filters
 
@@ -249,7 +257,7 @@ is optional and defaults to an empty string (C<''>).
     {{ 'Replace that with this' | replace:this,'this' }} => Replace this with this
     {{ 'I have a listhp.'       | replace:'th' }}        => I have a lisp.
 
-=head1 C<replace_first>
+=head2 C<replace_first>
 
 Replaces the first occurrence of a string with another string. The replacement
 value is optional and defaults to an empty string (C<''>).

@@ -2,21 +2,23 @@ package Template::Liquid::Tag::Assign;
 { $Template::Liquid::Tag::Assign::VERSION = 'v1.0.0' }
 require Template::Liquid::Error;
 require Template::Liquid::Utility;
-BEGIN { our @ISA = qw[Template::Liquid::Tag]; }
-sub import {Template::Liquid::register_tag('assign') }
+BEGIN { use base 'Template::Liquid::Tag'; }
+sub import { Template::Liquid::register_tag('assign') }
+
 sub new {
     my ($class, $args) = @_;
-    raise Template::Liquid::ContextError {
-                                       message => 'Missing template argument',
-                                       fatal   => 1
+    raise Template::Liquid::Error {type    => 'Context',
+                                   message => 'Missing template argument',
+                                   fatal   => 1
         }
         if !defined $args->{'template'};
-    raise Template::Liquid::ContextError {
-                                         message => 'Missing parent argument',
-                                         fatal   => 1
+    raise Template::Liquid::Error {type    => 'Context',
+                                   message => 'Missing parent argument',
+                                   fatal   => 1
         }
         if !defined $args->{'parent'};
-    raise Template::Liquid::SyntaxError {
+    raise Template::Liquid::Error {
+                   type    => 'Syntax',
                    message => 'Missing argument list in ' . $args->{'markup'},
                    fatal   => 1
         }
@@ -28,15 +30,17 @@ sub new {
     $args->{'filters'} = [];
     if ($filters) {
 
-        for my $filter (split $Template::Liquid::Utility::FilterSeparator, $filters) {
-            my ($filter, $f_args)
+        for my $filter (split $Template::Liquid::Utility::FilterSeparator,
+                        $filters)
+        {   my ($filter, $f_args)
                 = split $Template::Liquid::Utility::FilterArgumentSeparator,
                 $filter, 2;
             $filter =~ s[\s*$][]o;    # XXX - the splitter should clean...
             $filter =~ s[^\s*][]o;    # XXX -  ...this up for us.
             my @f_args
                 = $f_args ?
-                split $Template::Liquid::Utility::VariableFilterArgumentParser,
+                split
+                $Template::Liquid::Utility::VariableFilterArgumentParser,
                 $f_args
                 : ();
             push @{$args->{'filters'}}, [$filter, \@f_args];
@@ -50,17 +54,19 @@ sub render {
     my $var = $s->{'variable'};
     my $val = $s->{template}{context}->resolve($s->{'value'});
     {    # XXX - Duplicated in Template::Liquid::Variable::render
-    FILTER: for my $filter (@{$s->{'filters'}}) {
-            my ($name, $args) = @$filter;
-            map { $_ = m[^(['"])(.+)\1\s*$] ? $2 : $s->{template}{context}->resolve($_) } @$args;
-        PACKAGE: for my $package (@{$s->{template}{filters}}) {
-                if (my $call = $package->can($name)) {
+        if (scalar @{$s->{filters}}) {
+            my %_filters = $s->{template}->filters;
+        FILTER: for my $filter (@{$s->{filters}}) {
+                my ($name, $args) = @$filter;
+                map { $_ = $s->{template}{context}->resolve($_) || $_ }
+                    @$args;
+                my $package = $_filters{$name};
+                my $call = $package ? $package->can($name) : ();
+                if ($call) {
                     $val = $call->($val, @$args);
                     next FILTER;
                 }
-                else {
-                    raise Template::Liquid::FilterNotFound $name;
-                }
+                raise Template::Liquid::FilterNotFound $name;
             }
         }
     }
