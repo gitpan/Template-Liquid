@@ -41,7 +41,7 @@ provides:
     version: v1.0.0
   Template::Liquid:
     file: lib/Template/Liquid.pm
-    version: v1.0.0
+    version: v1.0.1
   Template::Liquid::Block:
     file: lib/Template/Liquid/Block.pm
     version: v1.0.0
@@ -57,12 +57,9 @@ provides:
   Template::Liquid::Error:
     file: lib/Template/Liquid/Error.pm
     version: v1.0.0
-  Template::Liquid::Filter:
-    file: lib/Template/Liquid/Filters.pm
-    version: v1.0.0
   Template::Liquid::Filters:
     file: lib/Template/Liquid/Filters.pm
-    version: 0
+    version: v1.0.0
   Template::Liquid::Tag:
     file: lib/Template/Liquid/Tag.pm
     version: v1.0.0
@@ -113,4 +110,4 @@ resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/sanko/template-liquid.git
   x_ChangeLog: http://github.com/sanko/template-liquid/commits/
-version: v1.0.0
+version: v1.0.1

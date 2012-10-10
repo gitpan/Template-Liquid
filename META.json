@@ -64,7 +64,7 @@
       },
       "Template::Liquid" : {
          "file" : "lib/Template/Liquid.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.1"
       },
       "Template::Liquid::Block" : {
          "file" : "lib/Template/Liquid/Block.pm",
@@ -86,13 +86,9 @@
          "file" : "lib/Template/Liquid/Error.pm",
          "version" : "v1.0.0"
       },
-      "Template::Liquid::Filter" : {
-         "file" : "lib/Template/Liquid/Filters.pm",
-         "version" : "v1.0.0"
-      },
       "Template::Liquid::Filters" : {
          "file" : "lib/Template/Liquid/Filters.pm",
-         "version" : 0
+         "version" : "v1.0.0"
       },
       "Template::Liquid::Tag" : {
          "file" : "lib/Template/Liquid/Tag.pm",
@@ -164,5 +160,5 @@
       },
       "x_ChangeLog" : "http://github.com/sanko/template-liquid/commits/"
    },
-   "version" : "v1.0.0"
+   "version" : "v1.0.1"
 }
