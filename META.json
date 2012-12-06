@@ -56,15 +56,15 @@
    "provides" : {
       "Solution::Tag::Dump" : {
          "file" : "lib/Solution/Tag/Dump.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Solution::Tag::Include" : {
          "file" : "lib/Solution/Tag/Include.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid" : {
          "file" : "lib/Template/Liquid.pm",
-         "version" : "v1.0.1"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Block" : {
          "file" : "lib/Template/Liquid/Block.pm",
@@ -72,11 +72,11 @@
       },
       "Template::Liquid::Condition" : {
          "file" : "lib/Template/Liquid/Condition.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Context" : {
          "file" : "lib/Template/Liquid/Context.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Document" : {
          "file" : "lib/Template/Liquid/Document.pm",
@@ -92,11 +92,11 @@
       },
       "Template::Liquid::Tag" : {
          "file" : "lib/Template/Liquid/Tag.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::Assign" : {
          "file" : "lib/Template/Liquid/Tag/Assign.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::Break" : {
          "file" : "lib/Template/Liquid/Tag/Break.pm",
@@ -104,7 +104,7 @@
       },
       "Template::Liquid::Tag::Capture" : {
          "file" : "lib/Template/Liquid/Tag/Capture.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::Case" : {
          "file" : "lib/Template/Liquid/Tag/Case.pm",
@@ -112,7 +112,7 @@
       },
       "Template::Liquid::Tag::Comment" : {
          "file" : "lib/Template/Liquid/Tag/Comment.pm",
-         "version" : 0
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::Continue" : {
          "file" : "lib/Template/Liquid/Tag/Continue.pm",
@@ -120,11 +120,11 @@
       },
       "Template::Liquid::Tag::Cycle" : {
          "file" : "lib/Template/Liquid/Tag/Cycle.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::For" : {
          "file" : "lib/Template/Liquid/Tag/For.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       },
       "Template::Liquid::Tag::If" : {
          "file" : "lib/Template/Liquid/Tag/If.pm",
@@ -144,7 +144,7 @@
       },
       "Template::Liquid::Variable" : {
          "file" : "lib/Template/Liquid/Variable.pm",
-         "version" : "v1.0.0"
+         "version" : "v1.0.2"
       }
    },
    "release_status" : "stable",
@@ -160,5 +160,5 @@
       },
       "x_ChangeLog" : "http://github.com/sanko/template-liquid/commits/"
    },
-   "version" : "v1.0.1"
+   "version" : "v1.0.2"
 }

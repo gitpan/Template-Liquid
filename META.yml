@@ -35,22 +35,22 @@ no_index:
 provides:
   Solution::Tag::Dump:
     file: lib/Solution/Tag/Dump.pm
-    version: v1.0.0
+    version: v1.0.2
   Solution::Tag::Include:
     file: lib/Solution/Tag/Include.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid:
     file: lib/Template/Liquid.pm
-    version: v1.0.1
+    version: v1.0.2
   Template::Liquid::Block:
     file: lib/Template/Liquid/Block.pm
     version: v1.0.0
   Template::Liquid::Condition:
     file: lib/Template/Liquid/Condition.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Context:
     file: lib/Template/Liquid/Context.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Document:
     file: lib/Template/Liquid/Document.pm
     version: v1.0.0
@@ -62,31 +62,31 @@ provides:
     version: v1.0.0
   Template::Liquid::Tag:
     file: lib/Template/Liquid/Tag.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Tag::Assign:
     file: lib/Template/Liquid/Tag/Assign.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Tag::Break:
     file: lib/Template/Liquid/Tag/Break.pm
     version: v1.0.0
   Template::Liquid::Tag::Capture:
     file: lib/Template/Liquid/Tag/Capture.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Tag::Case:
     file: lib/Template/Liquid/Tag/Case.pm
     version: v1.0.0
   Template::Liquid::Tag::Comment:
     file: lib/Template/Liquid/Tag/Comment.pm
-    version: 0
+    version: v1.0.2
   Template::Liquid::Tag::Continue:
     file: lib/Template/Liquid/Tag/Continue.pm
     version: v1.0.0
   Template::Liquid::Tag::Cycle:
     file: lib/Template/Liquid/Tag/Cycle.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Tag::For:
     file: lib/Template/Liquid/Tag/For.pm
-    version: v1.0.0
+    version: v1.0.2
   Template::Liquid::Tag::If:
     file: lib/Template/Liquid/Tag/If.pm
     version: v1.0.0
@@ -101,7 +101,7 @@ provides:
     version: v1.0.0
   Template::Liquid::Variable:
     file: lib/Template/Liquid/Variable.pm
-    version: v1.0.0
+    version: v1.0.2
 requires:
   File::Spec: 0
   perl: 5.006001
@@ -110,4 +110,4 @@ resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/sanko/template-liquid.git
   x_ChangeLog: http://github.com/sanko/template-liquid/commits/
-version: v1.0.1
+version: v1.0.2
