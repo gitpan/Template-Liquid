@@ -1,3 +1,10 @@
+Version 1.0.3 | Late afternoon on January 3rd, 2015 | 87968dc9
+
+    Resolved Issues/Bug Fixes:
+     * Merged fixes from Michal Wojciechowski:
+       - Correctly handle filter arguments with empty values (w/ test)
+       - Change quote characters from qr[] to qr{} to prevent warning on newer builds of perl (5.20.x+)
+
 Version 1.0.2 | Around ten on December 6th, 2012 | 2d72415
 
     Internal/Behavioral Changes:
@@ -96,6 +103,6 @@ _ -.-. .... .- -. --. . ... _________________________________________
 For more information, see the commit log:
     http://github.com/sanko/template-liquid/commits/
 
-$Ver: 0.0004 $ from git $Rev: 8991b1b $
-$Date: 2012-07-01 01:25:35Z (Sun, 01 Jul 2012) $
-$Url: http://github.com/sanko/template-liquid/tree/raw/master/Changes $
+$Ver$ from git $Rev$
+$Date$
+$Url$

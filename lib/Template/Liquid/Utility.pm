@@ -1,12 +1,12 @@
 package Template::Liquid::Utility;
-{ $Template::Liquid::Utility::VERSION = 'v1.0.0' }
+{ $Template::Liquid::Utility::VERSION = 'v1.0.3' }
 our $FilterSeparator = qr[\s*\|\s*]o;
 my $ArgumentSeparator = qr[,]o;
 our $FilterArgumentSeparator    = qr[\s*:\s*]o;
 our $VariableAttributeSeparator = qr[\.]o;
 our $TagStart                   = qr[{%\s*]o;
 our $TagEnd                     = qr[\s*%}]o;
-our $VariableSignature          = qr[\(?[\w\-\.\[\]]\)?]o;
+our $VariableSignature          = qr{\(?[\w\-\.\[\]]\)?}o;
 my $VariableSegment = qr[[\w\-]\??]ox;
 our $VariableStart = qr[\{\{\s*]o;
 our $VariableEnd   = qr[\s*}}]o;
